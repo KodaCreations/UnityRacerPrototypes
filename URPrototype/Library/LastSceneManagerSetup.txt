@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Empty.unity
+- path: Assets/Simon/MultiplayerScene.unity
   isLoaded: 1
   isActive: 1
