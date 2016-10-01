@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Simon/MultiplayerScene.unity
+- path: Assets/Andreas/AK-Short-Test-Track.unity
   isLoaded: 1
   isActive: 1
