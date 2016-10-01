@@ -1,10 +1,15 @@
 fileFormatVersion: 2
-guid: 40d21ae5df09366409f88d82e298da38
-timeCreated: 1475343083
+guid: ea842c9c7d4bd6c429c49ae8e2d8ada1
+timeCreated: 1475343598
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Icosphere
   materials:
     importMaterials: 1
     materialName: 0
@@ -63,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
