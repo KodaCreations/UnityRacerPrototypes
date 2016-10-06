@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/David/Split Screen.unity
+- path: Assets/Andreas/UF_hovertest.unity
   isLoaded: 1
   isActive: 1
