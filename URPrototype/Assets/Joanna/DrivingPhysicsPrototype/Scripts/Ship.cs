@@ -18,6 +18,8 @@ public class Ship : MonoBehaviour
 
     public float stability = 2f;
     public float stablitySpeed = 0.3f;
+    public string vertical = "Vertical";
+    public string horizontal = "Horizontal";
 
     void Awake()
     {
@@ -29,8 +31,8 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
-        powerInput = Input.GetAxis("Vertical");
-        turnInput = Input.GetAxis("Horizontal");
+        powerInput = Input.GetAxis(vertical);
+        turnInput = Input.GetAxis(horizontal);
     }
 
     void FixedUpdate()
