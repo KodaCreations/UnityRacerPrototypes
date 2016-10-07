@@ -20,9 +20,6 @@ public class Player1Ship : MonoBehaviour
     public float stability = 2f;
     public float stablitySpeed = 0.3f;
 
-    // Variables for displaying current speed on the HUD
-    //private float kmh = 0.0f;
-    //public Text speedText;
 
     void Awake()
     {
@@ -35,10 +32,6 @@ public class Player1Ship : MonoBehaviour
     {
         powerInput = Input.GetAxis("VerticalP1");
         turnInput = Input.GetAxis("HorizontalP1");
-
-        // Calculates speed in km/h and updates HUD text with 0 decimal points.
-        //kmh = rb.velocity.magnitude * 3.6f;
-        //speedText.text = kmh.ToString("N0") + " km/h";
     }
 
     void FixedUpdate()
@@ -56,8 +49,7 @@ public class Player1Ship : MonoBehaviour
         {
             //hit.distance = Mathf.Clamp(hit.distance, 0, hoverHeight * 2);
             float proportionalHeight = (hoverHeight - hit.distance * 0.2f) / hoverHeight;
-
-
+            
             Vector3 appliedHoverForce = transform.up * proportionalHeight * hoverForce;
             rb.AddForce(appliedHoverForce, ForceMode.Acceleration);
 
@@ -118,11 +110,6 @@ public class Player1Ship : MonoBehaviour
         Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
         //torqueVector = Vector3.Project(torqueVector, transform.forward);
         rb.AddTorque(torqueVector * stablitySpeed * stablitySpeed);
-    
-
-
-
-
 
 
         if (turnInput < 0 && turnInput < cachedTurnInput || turnInput == -1)

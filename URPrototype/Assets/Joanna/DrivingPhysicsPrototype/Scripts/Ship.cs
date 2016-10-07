@@ -21,8 +21,8 @@ public class Ship : MonoBehaviour
     public float stablitySpeed = 0.3f;
 
     // Variables for displaying current speed on the HUD
-    private float kmh = 0.0f;
-    public Text speedText;
+    //private float kmh = 0.0f;
+    //public Text speedText;
 
     void Awake()
     {
@@ -37,8 +37,8 @@ public class Ship : MonoBehaviour
         turnInput = Input.GetAxis("Horizontal");
 
         // Calculates speed in km/h and updates HUD text with 0 decimal points.
-        kmh = rb.velocity.magnitude * 3.6f;
-        speedText.text = kmh.ToString("N0") + " km/h";
+        //kmh = rb.velocity.magnitude * 3.6f;
+        //speedText.text = kmh.ToString("N0") + " km/h";
     }
 
     void FixedUpdate()
