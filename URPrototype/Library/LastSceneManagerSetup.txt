@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/David/Split Screen.unity
+- path: Assets/David/Prototype v2/Network Multiplayer.unity
   isLoaded: 1
   isActive: 1
