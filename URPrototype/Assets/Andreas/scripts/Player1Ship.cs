@@ -19,8 +19,7 @@ public class Player1Ship : MonoBehaviour
 
     public float stability = 2f;
     public float stablitySpeed = 0.3f;
-
-
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -30,8 +29,8 @@ public class Player1Ship : MonoBehaviour
 
     void Update()
     {
-        powerInput = Input.GetAxis("VerticalP1");
-        turnInput = Input.GetAxis("HorizontalP1");
+        powerInput = Input.GetAxis("Vertical");
+        turnInput = Input.GetAxis("Horizontal");
     }
 
     void FixedUpdate()
@@ -53,38 +52,7 @@ public class Player1Ship : MonoBehaviour
             Vector3 appliedHoverForce = transform.up * proportionalHeight * hoverForce;
             rb.AddForce(appliedHoverForce, ForceMode.Acceleration);
 
-            //Debug.Log(proportionalHeight + "  " + appliedHoverForce + "  " + hit.distance + "  " + rb.velocity);
-
-            //if (hit.distance > hoverHeight / 2f)
-            //    rb.AddForce(-transform.up * ((hit.distance - hoverHeight) / hoverHeight) * hoverForce, ForceMode.Acceleration);
-
-
-            //if (hit.distance < hoverHeight)
-            //{
-            //    rb.AddForce(-transform.up * ((hit.distance - hoverHeight) / hoverHeight) * hoverForce, ForceMode.Acceleration);
-            //}
-
-
-
-            //if (hit.distance > hoverHeight)
-            //rb.velocity.Set(rb.velocity.x, 0, rb.velocity.z);
-
             Vector3 temp = rb.position;
-            //temp.y = Mathf.Lerp(temp.y, hit.point.y + hoverHeight, Time.fixedDeltaTime * 2);
-            //if (rb.position.y > hit.point.y + hoverHeight + 2)
-            //{
-            //    //rb.MovePosition(temp);
-            //    //rb.position = temp;
-
-            //    rb.AddTorque(-transform.right * hoverForce * proportionalHeight * 5, ForceMode.Acceleration);
-
-            //    Debug.Log("hej");
-            //}
-            //else if (rb.position.y < hit.point.y + hoverHeight)
-            //{
-            //    rb.AddTorque(transform.right * hoverForce * proportionalHeight, ForceMode.Acceleration);
-            //    Debug.Log("tja");
-            //}
 
             Debug.DrawRay(hit.point, hit.normal, Color.red, 10);
 
@@ -101,14 +69,13 @@ public class Player1Ship : MonoBehaviour
 
             rb.AddTorque(T * 0.2f, ForceMode.Acceleration);
         }
-
+        
 
         Vector3 predictedUp = Quaternion.AngleAxis(
             rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / stablitySpeed,
             rb.angularVelocity
         ) * transform.up;
         Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
-        //torqueVector = Vector3.Project(torqueVector, transform.forward);
         rb.AddTorque(torqueVector * stablitySpeed * stablitySpeed);
 
 
