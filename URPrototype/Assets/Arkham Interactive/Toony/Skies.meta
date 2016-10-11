@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7a074234e174a0244a30e128cc0c7451
 folderAsset: yes
 timeCreated: 1475425468
+=======
+guid: 5ee33de32f2dfe44d89f6cd05ad7c38b
+folderAsset: yes
+timeCreated: 1475840216
+>>>>>>> HUD-speed-test
 licenseType: Free
 DefaultImporter:
   userData: 
