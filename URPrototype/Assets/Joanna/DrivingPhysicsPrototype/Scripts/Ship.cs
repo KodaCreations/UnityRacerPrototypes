@@ -9,8 +9,10 @@ public class Ship : MonoBehaviour
     public float turnSpeed = 5f;
     public float hoverForce = 65f;
     public float hoverHeight = 3.5f;
+    public bool flying;
     private float powerInput;
     private float turnInput;
+    private float vTurnInput;
     private Rigidbody rb;
     
     private Transform meshTransform;
@@ -24,6 +26,11 @@ public class Ship : MonoBehaviour
     //private float kmh = 0.0f;
     //public Text speedText;
 
+    void Start()
+    {
+        flying = false;
+    }
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,7 +40,19 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
-        powerInput = Input.GetAxis("Vertical");
+        if (flying)
+        {
+            if (Input.GetKey(KeyCode.Space))
+                powerInput = 1;
+            else
+                powerInput = 0;
+            vTurnInput = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            powerInput = Input.GetAxis("Vertical");
+            vTurnInput = 0;
+        }
         turnInput = Input.GetAxis("Horizontal");
 
         // Calculates speed in km/h and updates HUD text with 0 decimal points.
@@ -43,14 +62,46 @@ public class Ship : MonoBehaviour
 
     void FixedUpdate()
     {
-
         rb.AddRelativeForce(0f, 0f, powerInput * speed, ForceMode.Acceleration);
         rb.AddRelativeTorque(0f, turnInput * turnSpeed, 0f, ForceMode.Acceleration);
+        if ((vTurnInput > 0 && transform.eulerAngles.x >= 75 && transform.eulerAngles.x < 180) || (vTurnInput < 0 && transform.eulerAngles.x <= 285 && transform.eulerAngles.x > 180))
+            vTurnInput = 0;
+        rb.AddRelativeTorque(vTurnInput * turnSpeed, 0f, 0f, ForceMode.Acceleration);
+        if (transform.eulerAngles.x > 75 && transform.eulerAngles.x < 180)
+            transform.eulerAngles = new Vector3(75, transform.eulerAngles.y, transform.eulerAngles.z);
+        Debug.Log(transform.eulerAngles.x);
+        if (transform.eulerAngles.x < 285 && transform.eulerAngles.x > 180)
+            transform.eulerAngles = new Vector3(285, transform.eulerAngles.y, transform.eulerAngles.z);
+
+
+        if (flying)
+            UpdateAir();
+        else
+            UpdateGround();
+
+        //Vector3 predictedUp = Quaternion.AngleAxis(
+        //    rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / stablitySpeed,
+        //    rb.angularVelocity
+        //) * transform.up;
+        //Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
+        ////torqueVector = Vector3.Project(torqueVector, transform.forward);
+        //rb.AddTorque(torqueVector * stablitySpeed * stablitySpeed);
+    }
+
+    void UpdateAir()
+    {
+        
+    }
+
+    void UpdateGround()
+    {
+        //rb.AddRelativeForce(0f, 0f, powerInput * speed, ForceMode.Acceleration);
+        //rb.AddRelativeTorque(0f, turnInput * turnSpeed, 0f, ForceMode.Acceleration);
 
         Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        rb.velocity.Set(rb.velocity.x, 0, rb.velocity.z);
+        //rb.velocity.Set(rb.velocity.x, 0, rb.velocity.z);
 
         if (Physics.Raycast(ray, out hit, hoverHeight * 20))
         {
@@ -77,7 +128,7 @@ public class Ship : MonoBehaviour
             //if (hit.distance > hoverHeight)
             //rb.velocity.Set(rb.velocity.x, 0, rb.velocity.z);
 
-            Vector3 temp = rb.position;
+            //Vector3 temp = rb.position;
             //temp.y = Mathf.Lerp(temp.y, hit.point.y + hoverHeight, Time.fixedDeltaTime * 2);
             //if (rb.position.y > hit.point.y + hoverHeight + 2)
             //{
@@ -111,14 +162,14 @@ public class Ship : MonoBehaviour
         }
 
 
-        Vector3 predictedUp = Quaternion.AngleAxis(
-            rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / stablitySpeed,
-            rb.angularVelocity
-        ) * transform.up;
-        Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
-        //torqueVector = Vector3.Project(torqueVector, transform.forward);
-        rb.AddTorque(torqueVector * stablitySpeed * stablitySpeed);
-    
+
+        //Vector3 predictedUp = Quaternion.AngleAxis(
+        //    rb.angularVelocity.magnitude * Mathf.Rad2Deg * stability / stablitySpeed,
+        //    rb.angularVelocity
+        //) * transform.up;
+        //Vector3 torqueVector = Vector3.Cross(predictedUp, Vector3.up);
+        ////torqueVector = Vector3.Project(torqueVector, transform.forward);
+        //rb.AddTorque(torqueVector * stablitySpeed * stablitySpeed);
 
 
 

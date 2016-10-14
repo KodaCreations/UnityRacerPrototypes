@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Andreas/UF_hovertest.unity
+- path: Assets/David/FlightMode/FlightMode.unity
   isLoaded: 1
   isActive: 1
