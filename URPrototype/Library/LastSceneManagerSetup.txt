@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Simon/LevelEditor/LevelEditorScene.unity
+- path: Assets/Simon/SimonPhysics/SimonPhysicsScene.unity
   isLoaded: 1
   isActive: 1
