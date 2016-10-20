@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Ship : MonoBehaviour
@@ -11,7 +12,7 @@ public class Ship : MonoBehaviour
     private float powerInput;
     private float turnInput;
     private Rigidbody rb;
-
+    
     private Transform meshTransform;
 
     float cachedTurnInput;
@@ -21,18 +22,30 @@ public class Ship : MonoBehaviour
     public string vertical = "Vertical";
     public string horizontal = "Horizontal";
 
+    // Variables for displaying current speed on the HUD
+    //private float kmh = 0.0f;
+    //public Text speedText;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.inertiaTensor = new Vector3(1, 1, 1);
-
-        meshTransform = transform.FindChild("Mesh");
+        meshTransform = transform.FindChild("Mesh");        
     }
 
     void Update()
     {
+<<<<<<< HEAD
         powerInput = Input.GetAxis(vertical);
         turnInput = Input.GetAxis(horizontal);
+=======
+        powerInput = Input.GetAxis("Vertical");
+        turnInput = Input.GetAxis("Horizontal");
+
+        // Calculates speed in km/h and updates HUD text with 0 decimal points.
+        //kmh = rb.velocity.magnitude * 3.6f;
+        //speedText.text = kmh.ToString("N0") + " km/h";
+>>>>>>> master
     }
 
     void FixedUpdate()
