@@ -1,4 +1,16 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/David/FlightMode/FlightMode.unity
+=======
+<<<<<<< HEAD
+- path: Assets/David/Prototype v2/Network Multiplayer.unity
+=======
+<<<<<<< HEAD
+- path: Assets/Andreas/DemoScene/Demo.unity
+=======
+- path: Assets/Simon/SimonPhysics/SimonPhysicsScene.unity
+>>>>>>> master
+>>>>>>> master
+>>>>>>> master
   isLoaded: 1
   isActive: 1

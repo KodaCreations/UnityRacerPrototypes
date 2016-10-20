@@ -33,6 +33,11 @@ public class Player1Ship : MonoBehaviour
         turnInput = Input.GetAxis("Horizontal");
     }
 
+    void EngineSound()
+    {
+        GetComponent<AudioSource>().pitch = rb.velocity.magnitude - speed + 1;
+       
+    }
     void FixedUpdate()
     {
 
